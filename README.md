@@ -1,4 +1,3 @@
-Algorithms
-==========
+Introduction: I am taking Algorithms: Design and Analysis, Part I and Part II offered by Stanfor University through Coursera. This repository will hold all of the algorithms that I implement in the course of these classes as well as other basic algorithms I implement in my purusuit of become a better developer. 
 
-My implementation of classic basic algorithms in Ruby
+Note: Yes, I know that it doesn't make sense to implement algorithms in Ruby for practical applications. This is not my intent. My intent is to familiarize myself with the algorithms and also become a more solid Ruby developer. 
