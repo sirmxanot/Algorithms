@@ -1,4 +1,4 @@
-def cluster_24bit(file_name="test_clustering2.csv")
+def cluster_24bit(file_name="clustering2.csv")
   require "csv"
 
   nodes = Hash.new
@@ -18,12 +18,13 @@ def cluster_24bit(file_name="test_clustering2.csv")
 
   until nodes.empty? do
     node = nodes.keys.first
+    #puts "delete node: #{node}"
     nodes.delete(node)
+    #puts "updated hash #{nodes}"
     
     neighbors, nodes = within_two(node, nodes)
     until neighbors.empty? do
-      neighbor = neighbors.pop
-      near, nodes = within_two(neighbor, nodes)
+      near, nodes = within_two(neighbors.pop, nodes)
       neighbors.concat(near)
     end
     clusters += 1
@@ -35,22 +36,23 @@ end
 
 def within_one(node, nodes)
   close = Array.new
-
-  node.each do |i|
+  #puts "in within_one"
+  node.each_index do |i|
     permutation = node.dup
-
+    #puts "before: #{permutation}"
     if permutation[i] == 0
       permutation[i] = 1
     elsif permutation[i] == 1
       permutation[i] = 0
     end
-
-    if nodes[permutation]
-     close << nodes[permutation]
-     nodes.delete(permutation)
-    end
+    #puts "permutation: #{permutation}"
+    
+    close << permutation
+    
+    #if nodes[permutation] then nodes.delete(permutation) end
+    
   end
-
+  #puts "within one output: #{close}"
   return close, nodes
 end
 
@@ -59,37 +61,19 @@ def within_two(node, nodes)
   near = close.dup
 
   close.each do |n|
-    if node[n]
-      close, nodes = within_one(n,nodes)
-      near.concat(close)
-    end  
+    neighbors, nodes = within_one(n,nodes)
+    near.concat(neighbors)
   end
 
+  vecinos = Array.new
+  near.each do |n|
+    #puts "within twos: #{n}"
+    if nodes[n]
+      vecinos << n
+      #puts "new vecino #{n}"
+      nodes.delete(n)
+    end
+  end
 
-  return near, nodes
+  return vecinos, nodes
 end
-
-
-#   # #if you add up the sum of each row, you can filter the candidate nodes because
-#   # #you will know for sure which nodes are more than 2 apart. however, you will 
-#   # #not have a guarantee that the other nodes are not more than 2 apart, you will
-#   # #still have to do further checking
-#   nodes.each_value do |node|
-#     count = 0
-#     node.each_char {|b| count += b.to_i}
-#     sums[nodes.key(node)] = count
-#   end 
-
-#   nodes.each do |id, value|
-#     nodes.each do |comp_id, comp_value|
-#       if (sums[id] - sums[comp_id]).abs < 3
-#         if leaders.same?()
-          
-#         end
-#       end
-#     end
-#   end
-
-
-#   return nodes, sums
-# end
