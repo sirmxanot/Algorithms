@@ -14,13 +14,13 @@ class UnionFind
   end
 
   def union(id1,id2)
-      @ids[id1] = @ids[id1].concat(@ids[id2])
-      
-      @changes[id2].each do |id|
-        @ids[id] = @ids[id1]
-        @ids[id].sort!.uniq!
-      end
-      @changes[id1] = @changes[id1].concat([id2])
+    @ids[id1] = @ids[id1].concat(@ids[id2])
+    
+    @changes[id2].each do |id|
+      @ids[id] = @ids[id1]
+      @ids[id].sort!.uniq!
+    end
+    @changes[id1] = @changes[id1].concat([id2])
   end
 
   def values
