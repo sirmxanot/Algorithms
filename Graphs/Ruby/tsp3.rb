@@ -1,19 +1,28 @@
-def tsp(file_name = "test.csv")
-  require "csv"
-  require "bitwise"
-
-  inf = Float::INFINITY
+def tsp(file_name = "tsp.csv")
+  inf = 9999999999999999999999999999999
   @raw = Hash.new # key = city id number, value = coordinates [x, y]
   @graph = Hash.new # key = [c1ID, c2ID], value = euclidian distance
   @a = Hash.new #key = [subg in binary string, size], value = shortest 
                 #path dist
   short_paths = Hash.new
+  a = Array.new 
 
   i ||= 0
 
   #read in raw graph
-  CSV.foreach(file_name, :converters => :float) do |row| 
-    @raw[i] = [row[0] , row[1]]
+  File.open(file_name, "r") do |file_handle|
+    file_handle.each_line do |node|
+      a << node.split("/n")
+    end
+  end 
+
+  #cleanup graph input and put into a hash
+  a.each do |node|
+    node[0] = node[0].chomp.split(",")
+    node.flatten!
+    node[0] = node[0].to_f
+    node[1] = node[1].to_f
+    @raw[i] = node
     i += 1
   end
 
@@ -26,8 +35,8 @@ def tsp(file_name = "test.csv")
 
   #find min paths for each choice of j in complete graph
   @raw.keys.each do |j|
-    #all_nodes = "1111111111111111111111111"
-    all_nodes = "111111111111"
+    all_nodes = "1111111111111111111111111"
+    #all_nodes = "1111111111111111111"
     puts "node #{j}"
     short_paths[j] = answer(all_nodes, j) unless j == 0
   end
@@ -42,14 +51,10 @@ def tsp(file_name = "test.csv")
 end
 
 def answer(s,j)
-  require "bitwise"
-
-  inf = Float::INFINITY
-  subg = Bitwise.new
-  subg.bits = s
+  inf = 9999999999999999999999999999999
 
   if j == 0
-    if (s =~ /^10+0$/) == 0
+    if s == "100000000000"
       0
     else
       inf
@@ -58,12 +63,13 @@ def answer(s,j)
     @a[[s,j]]
   else
     pot_ans = Array.new
-    
-    s_prime = subg.clone
-    s_prime.unset_at(j)
+    s_prime = s.clone
+    s_prime[j] = "0"
 
-    s_prime.indexes.each do |k|
-      pot_ans << answer(s_prime.bits,k) + @graph[[j,k]]
+    indexes = (0 .. s_prime.length - 1).find_all { |i| s_prime[i,1] == '1' }
+
+    indexes.each do |k|
+      pot_ans << answer(s_prime,k) + @graph[[j,k]]
     end
 
     @a[[s,j]] = pot_ans.min
