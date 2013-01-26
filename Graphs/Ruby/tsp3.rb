@@ -1,4 +1,4 @@
-def tsp(file_name = "tsp.csv")
+def tsp(file_name = "test.csv")
   inf = 9999999999999999999999999999999
   @raw = Hash.new # key = city id number, value = coordinates [x, y]
   @graph = Hash.new # key = [c1ID, c2ID], value = euclidian distance
@@ -35,8 +35,8 @@ def tsp(file_name = "tsp.csv")
 
   #find min paths for each choice of j in complete graph
   @raw.keys.each do |j|
-    all_nodes = "1111111111111111111111111"
-    #all_nodes = "1111111111111111111"
+    #all_nodes = "1111111111111111111111111"
+    all_nodes = "1111111111111111111"
     puts "node #{j}"
     short_paths[j] = answer(all_nodes, j) unless j == 0
   end
