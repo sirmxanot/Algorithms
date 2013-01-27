@@ -1,10 +1,12 @@
-def tsp3(file_name = "tsp.csv")
+def tsp3(file_name = "test.csv")
   inf = 9999999999999999999999999999999
   @raw = Hash.new # key = city id number, value = coordinates [x, y]
   @graph = Hash.new # key = [c1ID, c2ID], value = euclidian distance
   @a = Hash.new #key = [subg in binary string, size], value = shortest 
                 #path dist
+  @p = Hash.new
   short_paths = Hash.new
+  lengths = Hash.new
   a = Array.new 
   starts = Time.now
 
@@ -41,41 +43,60 @@ def tsp3(file_name = "tsp.csv")
   #find min paths for each choice of j in complete graph
   @raw.keys.each do |j|
     puts "node #{j}, #{Time.now - starts}"
-    short_paths[j] = answer(all_nodes, j) unless j == 0
+    lengths[j], short_paths[j] = answer(all_nodes, j) unless j == 0 
   end
 
   #find the path + arc back to 0 that is shortest
-  answer = Array.new
-  short_paths.each_pair do |j, ans|
-    answer << ans + @graph[[0,j]]
+  final_ans ||= inf
+  final_path = Array.new
+
+  lengths.each_pair do |j, ans|
+    if ans + @graph[[0,j]] < final_ans
+      final_ans = ans + @graph[[0,j]]
+      final_path = short_paths[j] << 0
+    end
   end
 
-  answer.min
+  return final_ans, final_path, @graph
 end
 
 def answer(s,j)
   inf = 9999999999999999999999999999999
-
   if j == 0
     if s == @base
-      0
+      return 0, [0]
     else
-      inf
+      return inf, [0]
     end
   elsif @a[[s,j]] != nil
-    @a[[s,j]]
+    return  @a[[s,j]], @p[[s,j]].clone
   else
-    pot_ans = Array.new
+    best_ans = inf
+    best_k = inf
+    best_path = Array.new
     s_prime = s.clone
     s_prime[j] = "0"
 
     indexes = (0 .. s_prime.length - 1).find_all { |i| s_prime[i,1] == '1' }
 
     indexes.each do |k|
-      pot_ans << answer(s_prime,k) + @graph[[j,k]]
-    end
+      pot_ans = inf
+      pot_path = Array.new
 
-    @a[[s,j]] = pot_ans.min
+      pot_ans, pot_path = answer(s_prime,k)
+      pot_path = pot_path.clone
+      pot_ans += @graph[[j,k]]
+
+      pot_path.push(j) 
+
+      if pot_ans < best_ans
+        best_ans = pot_ans
+        best_k = k 
+        best_path = pot_path
+      end
+    end
+    
+    return @a[[s,j]] = best_ans, @p[[s,j]] = best_path.clone
   end
 end
 

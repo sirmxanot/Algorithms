@@ -36,11 +36,9 @@ end
 def time
   require 'tsp3.rb'
   start = Time.now
-  result = tsp3("test1.csv") + tsp3("test2.csv")
+  half1, path1 = tsp3("test1.csv")  
+  half2, path2 = tsp3("test2.csv")
   read_file()
-  result = result
-  puts "g1314 #{@g[[13,14]]} g1213 #{@g[[12,13]]} g1415 #{@g[[14,15]]}"
-  puts "g1215 #{@g[[12,15]]} g1214 #{@g[[12,14]]} g1315 #{@g[[13,15]]}"
   puts "Completed in #{Time.now - start} seconds."
-  result
+  return half1, path1, half2, path2, @g
 end
