@@ -1,6 +1,7 @@
 def merge_sort_inversion_counter(m)
+
   #base case
-  if m.length <= 1
+  if m.length <= 1 
     return m, 0
   #all other cases
   else
@@ -55,4 +56,24 @@ def merge(left, right)
 
   #return ouput
   return output, counter
+end
+
+def read_file(file_name = "IntegerArray.csv")
+  require "csv"
+
+  m = Array.new
+
+  #read in graph
+  CSV.foreach(file_name, :converters => :integer) do |row| 
+    m.concat(row)
+  end
+  m
+end
+
+def time
+  start = Time.now
+  m = read_file(file_name = "IntegerArray.csv")
+  result = merge_sort_inversion_counter(m)
+  puts "Completed in #{Time.now - start} seconds."
+  result
 end
