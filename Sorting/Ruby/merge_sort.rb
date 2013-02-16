@@ -40,12 +40,12 @@ def merge(left, right)
       end
     #when counter for left has reached end, but right has not
     elsif i >= left.length && j < right.length
-        output[index]=right[j]
-        j += 1
+      output[index]=right[j]
+      j += 1
     #when counter for right has reached end, but left has not
     elsif i < left.length && j >= right.length
-        output[index]=left[i]
-        i += 1    
+      output[index]=left[i]
+      i += 1    
     end
   end
   
