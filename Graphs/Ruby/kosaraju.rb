@@ -1,4 +1,8 @@
-def kosaraju(file_name = "Sites/Algorithms/Graphs/Ruby/SCC.txt")
+RubyVM::InstructionSequence.compile_option = {
+  :tailcall_optimization => true,
+  :trace_instruction => false
+}
+def kosaraju(file_name = "SCC.txt")
   graph = Hash.new #key source node, value all endpts
   reverse_graph = Hash.new #key end pt, value all source nodes
   @leaders = Hash.new #key leader name, value nodes in leaders scc
@@ -18,6 +22,17 @@ def kosaraju(file_name = "Sites/Algorithms/Graphs/Ruby/SCC.txt")
       else
         graph[a] = [b]
       end
+
+      graph[b] = [] unless graph.has_key?(b)
+
+      #load reverse graph
+      if reverse_graph.has_key?(b)
+        reverse_graph[b].push(a)
+      else
+        reverse_graph[b] = [a]
+      end
+
+      graph[a] = [] unless graph.has_key?(a)
     end
     puts "finished loading files"
   end 
@@ -26,18 +41,20 @@ def kosaraju(file_name = "Sites/Algorithms/Graphs/Ruby/SCC.txt")
   puts "reverse"
   @t = 0 #number of nodes processed so far
 
-  graph.each_key do |node|
-    puts @t
+  reverse_graph.keys.sort.reverse.each do |node|
+    puts "node #{node}"
     if @finish_times[node].nil?
       @source = node
-      depth_first_search(graph, node)
+      depth_first_search(reverse_graph, node)
     end
   end
 
   #specify order for second sort
   puts "specify order"
+  #order = @finish_times
+  #puts "order #{order}"
   order = @finish_times.invert
-  order = Hash[order.sort]
+  order = Hash[order.sort.reverse]
 
   #run dfs a second time
   puts "forward"
@@ -60,7 +77,6 @@ def kosaraju(file_name = "Sites/Algorithms/Graphs/Ruby/SCC.txt")
     answer << scc.length
   end
 
-
   return answer.sort.reverse
 end
 
@@ -82,7 +98,6 @@ def depth_first_search(graph, node)
       end
     end
   end
-
   @t += 1
   @finish_times[node] = @t
 end

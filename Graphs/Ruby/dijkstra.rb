@@ -1,37 +1,43 @@
-def dijkstra(source, file_name = "test2.csv")
+def dijkstra(source, file_name = "dijkstraData.txt")
   require "rubygems"
   require "algorithms"
-
-  #delete this part later
   require 'csv'
+
   @nodes = Hash.new
   @l_trans = Hash.new
   @graph = Hash.new
-  @rgraph = Hash.new
-  CSV.foreach(file_name, :converters => :integer) do |edge| 
-    @l_trans[[edge[0],edge[1]]] = edge[2]
-    if @graph.has_key?(edge[0])
-      @graph[edge[0]] << edge[1]
-    else
-      @graph[edge[0]] = [edge[1]]
-    end
 
-    if @rgraph.has_key?(edge[1])
-      @rgraph[edge[1]] << edge[0]
-    else
-      @rgraph[edge[1]] = [edge[0]]
-    end
-    
-    if @nodes.has_key?(edge[0])
-    else
-      @nodes[edge[0]] = edge[0]
-    end
+  #read in raw graph
+  File.open(file_name, "r") do |file_handle|
+    file_handle.each_line do |line|
+      row = line.split
+      tail = row.shift.to_i
+      row.each do |edge|
+        head,cost = edge.split(',') 
+        head = head.to_i
+        cost = cost.to_i
 
-    if @nodes.has_key?(edge[1])
-    else
-      @nodes[edge[1]] = edge[1]
+        @l_trans[[tail,head]] = cost
+
+        if @graph.has_key?(tail)
+          @graph[tail] << head
+        else
+          @graph[tail] = [head]
+        end
+
+        if @nodes.has_key?(tail)
+        else
+          @nodes[tail] = tail
+        end
+
+        if @nodes.has_key?(head)
+        else
+          @nodes[head] = head
+        end
+      end
     end
-  end
+    puts "finished loading files"
+  end 
 
   @unvisited = Containers::MinHeap.new
   @runvisited = Hash.new #key = node, value = d_score
@@ -68,9 +74,11 @@ def dijkstra(source, file_name = "test2.csv")
   end
 
   @shortest_paths.delete(source)
+  
+  answer = [@shortest_paths[7],@shortest_paths[37],@shortest_paths[59],
+    @shortest_paths[82],@shortest_paths[99],@shortest_paths[115],
+    @shortest_paths[133],@shortest_paths[165],@shortest_paths[188],
+    @shortest_paths[197]]
 
-  dist = @shortest_paths.values.min
-  node = @shortest_paths.key(dist)
-
-  return node, dist
+  return answer
 end
