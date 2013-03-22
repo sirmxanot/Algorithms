@@ -1,4 +1,8 @@
-def kosaraju(file_name = "test.txt")
+#this is a modified version of my (more elegant) recursive version 
+#of kosaraju's depth first search algorithm. i had to do this to 
+#avoid stack overflow issues with ruby.
+
+def k(file_name = "SCC.txt")
   graph = Hash.new #key source node, value all endpts
   reverse_graph = Hash.new #key end pt, value all source nodes
   @leaders = Hash.new #key leader name, value nodes in leaders scc
@@ -35,74 +39,83 @@ def kosaraju(file_name = "test.txt")
 
   #initial dfs to determine order for second dfs
   puts "reverse"
-  @t = 0 #number of nodes processed so far
-
   reverse_graph.keys.sort.reverse.each do |node|
-    puts "node #{node}"
     if @finish_times[node].nil?
       @source = node
-      depth_first_search(reverse_graph, node)
+      order << depth_first_search(reverse_graph).reverse
     end
   end
 
   #specify order for second sort
   puts "specify order"
-  #order = @finish_times
-  #puts "order #{order}"
-  order = @finish_times.invert
-  order = Hash[order.sort.reverse]
+
+  #the order of the nodes are in chunks. order is an array or arrays at this point. i reverse the chunks here to put them in the correct order
+  order.reverse!
+
+  #then condense the array into a single array of nodes
+  order.flatten!
 
   #run dfs a second time
   puts "forward"
   @leaders = Hash.new
   @finish_times = Hash.new
-  @t = 0
 
-  puts "order #{order}"
-
-  order.each_value do |node|
+  order.each do |node|
     if @finish_times[node].nil?
       @source = node
-      depth_first_search(graph, node)
+      depth_first_search(graph)
     end
   end
 
   #return answer in the form of the number of nodes in the top
   # five largest SCCs
   answer = Array.new
-
   @leaders.each_value do |scc|
+    scc.uniq!
     answer << scc.length
   end
 
-  return answer.sort.reverse
+  return answer.sort.reverse.first(5)
 end
 
-def depth_first_search(graph, node)
-  s = @source
+def depth_first_search(graph)
+  stack = [@source]
+  order = []
+  @finish_times[@source] = 0
 
-  if @leaders[s].nil?
-    @leaders[s] = [node]
-  else
-    @leaders[s].push(node)
-  end
-
-  @finish_times[node] = 0
-
-  if graph[node] != nil
-    graph[node].each do |arc|
-      if @finish_times[arc].nil?
-        depth_first_search(graph, arc)
-      end
+  until stack.empty? do
+    node = stack.last
+    
+    if @leaders[@source].nil?
+      @leaders[@source] = [node]
+    else
+      @leaders[@source].push(node)
     end
+
+    if graph[node]
+      unvisited = graph[node].detect { |neighbor| unvisited?(neighbor) }
+      if unvisited   
+        stack.push(unvisited)
+      else
+        order.push(stack.pop)
+      end
+    else 
+      order.push(stack.pop)
+    end
+
+    @finish_times[node] = 0
   end
-  @t += 1
-  @finish_times[node] = @t
+
+  order
+end
+
+def unvisited?(node)
+  if @finish_times[node] then false else true end
 end
 
 def time
   start = Time.now
-  answer = kosaraju()
+  answer = k()
   puts "Completed in #{Time.now - start} seconds."
   return answer
 end
