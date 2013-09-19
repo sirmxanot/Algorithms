@@ -3,7 +3,7 @@ class String
   def rev
     rev = ""
 
-    self.chars do |char|
+    self.each_char do |char|
       rev.insert(0, char)
     end
 

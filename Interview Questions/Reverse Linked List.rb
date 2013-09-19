@@ -70,6 +70,7 @@ class LinkedList
     return a
   end
 
+  # Destructively reverses a linked list
   def reverse!
     return nil if @head.nil?
 
@@ -87,6 +88,7 @@ class LinkedList
     return self
   end 
 
+  # Non-destructively reverses a linked list
   def reverse
     new_list = LinkedList.new
 
@@ -112,6 +114,7 @@ class Array
   end
 end
 
+# basic unit tests
 def test
   a = [1,2,3,4,5,6]
   b = [a,b,1,2,-3,54.5]

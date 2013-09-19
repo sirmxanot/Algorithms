@@ -9,7 +9,7 @@ end
 def unique_from_scratch(string)
   chars = Hash.new
   
-  string.chars do |char|
+  string.each_char do |char|
     chars[char] = char unless chars.has_key?(char)
   end
 
@@ -32,3 +32,5 @@ def test
   unique_from_scratch("The quick brown f") == false
   unique_from_scratch("Thequickbrownf") == true
 end
+
+test
