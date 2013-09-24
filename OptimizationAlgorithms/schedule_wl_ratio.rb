@@ -21,3 +21,7 @@ def schedule_wl_ratio(file_name="test_data/jobs.csv")
 
   sum
 end
+
+def test
+  schedule_wl_ratio == 67311454237
+end

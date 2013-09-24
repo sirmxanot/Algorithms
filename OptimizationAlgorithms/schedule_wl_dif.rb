@@ -21,3 +21,7 @@ def schedule_wl_dif(file_name="test_data/jobs.csv")
 
   sum
 end
+
+def test
+  schedule_wl_dif == 69119377652
+end

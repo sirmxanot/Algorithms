@@ -1,4 +1,4 @@
-def knapsack_recursive(knapsack_size = 2000000, file_name = "test_data/knapsack2.csv")
+def knapsack_recursive(knapsack_size = 10000, file_name = "test_data/knapsack1.csv")
   require "csv"
 
   @value = Hash.new
@@ -33,9 +33,9 @@ def solution(items, weight)
   end
 end
 
-def time
+def test
   start = Time.now
   result = knapsack_recursive()
   puts "Completed in #{Time.now - start} seconds."
-  result
+  result == 2493893
 end

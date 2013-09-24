@@ -1,3 +1,4 @@
+# The recursive version is more elegant, but has ruby stack overflow problems with big input
 def knapsack(knapsack_size = 10000, file_name = "test_data/knapsack1.csv")
   require "csv"
 
@@ -26,4 +27,11 @@ def knapsack(knapsack_size = 10000, file_name = "test_data/knapsack1.csv")
   end
 
   return solutions[[stash.size,knapsack_size]]
+end
+
+def test
+  start = Time.now
+  result = knapsack()
+  puts "Completed in #{Time.now - start} seconds."
+  result == 2493893
 end
