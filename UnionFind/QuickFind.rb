@@ -1,4 +1,5 @@
 class QuickFind
+  #initializes a QuickFind object with ids from 0 to n
   def initialize(n)
     @ids = []
     0.upto(n-1) {|i| @ids[i] = i}
