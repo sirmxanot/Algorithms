@@ -1,4 +1,4 @@
-def knapsack_recursive(knapsack_size = 2000000, file_name = "knapsack2.csv")
+def knapsack_recursive(knapsack_size = 2000000, file_name = "test_data/knapsack2.csv")
   require "csv"
 
   @value = Hash.new

@@ -1,4 +1,4 @@
-def knapsack(knapsack_size = 10000, file_name = "knapsack1.csv")
+def knapsack(knapsack_size = 10000, file_name = "test_data/knapsack1.csv")
   require "csv"
 
   stash = Array.new
