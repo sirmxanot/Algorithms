@@ -52,3 +52,17 @@ def merge(left, right)
   #return ouput
   output
 end
+
+def test 
+  a = []
+  b = [-88,88,3,-22,1,2,3,0]
+  c = [1,2,3,4,5]
+  d = [5,4,3,2,1]
+  e = "1,2,3,4"
+  f = [1,"b",3,4]
+
+  puts merge_sort(a) == []
+  puts merge_sort(b) == [-88,-22,0,1,2,3,3,88]
+  puts merge_sort(c) == [1,2,3,4,5]
+  puts merge_sort(d) == [1,2,3,4,5]
+end

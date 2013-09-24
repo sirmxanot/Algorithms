@@ -1,4 +1,4 @@
-def two_sum(interval_low = 2500, interval_high = 4000, file = "HashInt.txt")
+def two_sum(interval_low = 2500, interval_high = 2750, file = "test_data/HashInt.txt")
   @universe = Hash.new
   @solutions = 0
 
@@ -23,4 +23,8 @@ end
 
 def solution_exists?(goal, x)
   @universe.has_key?(goal - x) if x != goal - x
+end
+
+def test 
+  two_sum == 239
 end

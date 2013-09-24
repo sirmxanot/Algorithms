@@ -57,7 +57,7 @@ def merge(left, right)
   return output, counter
 end
 
-def read_file(file_name = "IntegerArray.csv")
+def read_file(file_name = "test_data/IntegerArray.csv")
   require "csv"
 
   m = Array.new
@@ -69,10 +69,10 @@ def read_file(file_name = "IntegerArray.csv")
   m
 end
 
-def time
+def test
   start = Time.now
-  m = read_file(file_name = "IntegerArray.csv")
-  result = merge_sort_inversion_counter(m)
+  m = read_file(file_name = "test_data/IntegerArray.csv")
+  result = merge_sort_inversion_counter(m).pop
   puts "Completed in #{Time.now - start} seconds."
-  result
+  result == 2407905288
 end

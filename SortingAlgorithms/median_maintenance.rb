@@ -59,3 +59,7 @@ def balance_heaps
     @high.push(@low.max!)
   end
 end 
+
+def test
+  mm == 1213
+end

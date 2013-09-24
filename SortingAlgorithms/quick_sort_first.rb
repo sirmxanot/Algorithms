@@ -28,3 +28,30 @@ def quick_sort_first(a, l=0, r=a.length-1, m=0)
 
   return a, m
 end
+
+def read_file(file_name = "test_data/IntegerArray.csv")
+  require "csv"
+
+  a = Array.new
+
+  #read in graph
+  CSV.foreach(file_name, :converters => :integer) do |row| 
+    a.concat(row)
+  end
+  a
+end
+
+def test
+  a = []
+  b = [-88,88,3,-22,1,2,3,0]
+  c = [1,2,3,4,5]
+  d = [5,4,3,2,1]
+  e = "1,2,3,4"
+  f = [1,"b",3,4]
+
+  puts quick_sort_first(a).shift == [nil]
+  puts quick_sort_first(b).shift == [-88,-22,0,1,2,3,3,88]
+  puts quick_sort_first(c).shift == [1,2,3,4,5]
+  puts quick_sort_first(d).shift == [1,2,3,4,5]
+  puts quick_sort_first(read_file).pop == 1954287
+end
