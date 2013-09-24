@@ -31,3 +31,13 @@ class UnionFind
     @ids.values
   end
 end
+
+def test
+  a = UnionFind.new([1,2],[3,4],[5,6])
+
+  a.union(1,4)
+  a.union(4,5)
+  puts a.connected?(1,5)
+  puts a.connected?(1,2) == false
+end
+test

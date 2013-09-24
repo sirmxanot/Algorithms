@@ -18,3 +18,13 @@ class QuickFind
     @ids.length
   end
 end
+
+def test
+  a = QuickFind.new(5)
+
+  a.union(1,4)
+  a.union(4,5)
+  puts a.connected?(1,5)
+  puts a.connected?(1,2) == false
+end
+test
