@@ -15,11 +15,11 @@ class String
 end
 
 def test
-  "abc def".replace == "abc%20def"
-  "abcdef".replace == "abcdef" 
-  "   ".replace == "%20%20%20" 
-  "ab cd ef".replace(" ","X") == "abXcdXef" 
-  "ab cd ef".replace("d","X") == "ab cX ef" 
+  puts "abc def".replace == "abc%20def"
+  puts "abcdef".replace == "abcdef" 
+  puts "   ".replace == "%20%20%20" 
+  puts "ab cd ef".replace(" ","X") == "abXcdXef" 
+  puts "ab cd ef".replace("d","X") == "ab cX ef" 
 end
 
 test

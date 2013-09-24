@@ -13,11 +13,11 @@ end
 
 def test
   # all tests should return true
-  "abbc".rev == "abbc".reverse
-  "12234".rev == "12234".reverse
-  "blob".rev == "blob".reverse
-  "som here$ ".rev == "som here$ ".reverse
-  "quick and brown".rev == "quick and brown".reverse
+  puts "abbc".rev == "abbc".reverse
+  puts "12234".rev == "12234".reverse
+  puts "blob".rev == "blob".reverse
+  puts "som here$ ".rev == "som here$ ".reverse
+  puts "quick and brown".rev == "quick and brown".reverse
 end
 
 test

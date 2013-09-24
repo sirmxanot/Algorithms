@@ -18,19 +18,19 @@ end
 
 def test
   #all tests should return true
-  unique?("AaBbCc") == true
-  unique?("aa") == false
-  unique?("12345") == true
-  unique?("1223") == false
-  unique?("The quick brown f") == false
-  unique?("Thequickbrownf") == true
+  puts unique?("AaBbCc") == true
+  puts unique?("aa") == false
+  puts unique?("12345") == true
+  puts unique?("1223") == false
+  puts unique?("The quick brown f") == false
+  puts unique?("Thequickbrownf") == true
 
-  unique_from_scratch("AaBbCc") == true
-  unique_from_scratch("aa") == false
-  unique_from_scratch("12345") == true
-  unique_from_scratch("1223") == false
-  unique_from_scratch("The quick brown f") == false
-  unique_from_scratch("Thequickbrownf") == true
+  puts unique_from_scratch("AaBbCc") == true
+  puts unique_from_scratch("aa") == false
+  puts unique_from_scratch("12345") == true
+  puts unique_from_scratch("1223") == false
+  puts unique_from_scratch("The quick brown f") == false
+  puts unique_from_scratch("Thequickbrownf") == true
 end
 
 test

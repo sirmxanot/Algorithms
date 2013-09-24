@@ -16,24 +16,24 @@ end
 
 def test
   # test anagram?
-  "abc".anagram?("cba") == true
-  "aabbcc".anagram?("abc") == false
-  "123".anagram?("213") == true
-  "112233".anagram?("123") == false
-  " $ a A 111 ".anagram?("$aA111     ") == true
-  " $ a A 111 ".anagram?("$aA111    ") == false
-  "".anagram?("") == true
-  "abc".anagram?("abc") == true
+  puts "abc".anagram?("cba") == true
+  puts "aabbcc".anagram?("abc") == false
+  puts "123".anagram?("213") == true
+  puts "112233".anagram?("123") == false
+  puts " $ a A 111 ".anagram?("$aA111     ") == true
+  puts " $ a A 111 ".anagram?("$aA111    ") == false
+  puts "".anagram?("") == true
+  puts "abc".anagram?("abc") == true
 
   # test anagram_from_scratch
-  "abc".anagram_from_scratch("cba") == true
-  "aabbcc".anagram_from_scratch("abc") == false
-  "123".anagram_from_scratch("213") == true
-  "112233".anagram_from_scratch("123") == false
-  " $ a A 111 ".anagram_from_scratch("$aA111     ") == true
-  " $ a A 111 ".anagram_from_scratch("$aA111    ") == false
-  "".anagram_from_scratch("") == true
-  "abc".anagram_from_scratch("abc") == true
+  puts "abc".anagram_from_scratch("cba") == true
+  puts "aabbcc".anagram_from_scratch("abc") == false
+  puts "123".anagram_from_scratch("213") == true
+  puts "112233".anagram_from_scratch("123") == false
+  puts " $ a A 111 ".anagram_from_scratch("$aA111     ") == true
+  puts " $ a A 111 ".anagram_from_scratch("$aA111    ") == false
+  puts "".anagram_from_scratch("") == true
+  puts "abc".anagram_from_scratch("abc") == true
 end
 
 test

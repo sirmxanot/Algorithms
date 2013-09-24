@@ -12,12 +12,12 @@ end
 
 def test
   # test non-destructive dedupe
-  "aabbcc".dedupe == "abc"
-  "112233".dedupe == "123"
-  "abacabac".dedupe == "abc"
-  " $ a A 111 ".dedupe == " $aA1"
-  "".dedupe == ""
-  "abc".dedupe == "abc"
+  puts "aabbcc".dedupe == "abc"
+  puts "112233".dedupe == "123"
+  puts "abacabac".dedupe == "abc"
+  puts " $ a A 111 ".dedupe == " $aA1"
+  puts "".dedupe == ""
+  puts "abc".dedupe == "abc"
 end
 
 test
