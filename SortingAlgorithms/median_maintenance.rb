@@ -1,4 +1,4 @@
-def mm(file_name = "Median.txt")
+def mm(file_name = "test_data/Median.txt")
   require "rubygems"
   require "algorithms"
 
