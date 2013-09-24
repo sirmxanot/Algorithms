@@ -139,34 +139,34 @@ def test
 
   #test push
   def test_push(a,b,c,d)
-    a.to_l.push(Element.new(10)).to_a == a.push(10)
-    b.to_l.push(Element.new(10)).to_a == b.push(10)
-    c.to_l.push(Element.new(10)).to_a == c.push(10)
-    d.to_l.push(Element.new(10)).to_a == d.push(10)
+    puts a.to_l.push(Element.new(10)).to_a == a.push(10)
+    puts b.to_l.push(Element.new(10)).to_a == b.push(10)
+    puts c.to_l.push(Element.new(10)).to_a == c.push(10)
+    puts d.to_l.push(Element.new(10)).to_a == d.push(10)
   end
 
   #test shift
   def test_shift(a,b,c,d)
-    a.to_l.shift.value == a.shift
-    b.to_l.shift.value == b.shift
-    c.to_l.shift.value == c.shift
-    d.to_l.shift.value == d.shift
+    puts a.to_l.shift.value == a.shift
+    puts b.to_l.shift.value == b.shift
+    puts c.to_l.shift.value == c.shift
+    puts d.to_l.shift.value == d.shift
   end
 
   #test_destructive reverse method
   def test_reverse!(a,b,c,d)
-    a.to_l.reverse!.to_a == a.reverse
-    b.to_l.reverse!.to_a == b.reverse
-    c.to_l.reverse!.to_a == c.reverse
-    d.to_l.reverse!.to_a == d.reverse
+    puts a.to_l.reverse!.to_a == a.reverse
+    puts b.to_l.reverse!.to_a == b.reverse
+    puts c.to_l.reverse!.to_a == c.reverse
+    puts d.to_l.reverse!.to_a == d.reverse
   end
 
   #test_non-destructive
   def test_reverse(a,b,c,d)
-    a.reverse == a.to_l.reverse.to_a
-    b.reverse == b.to_l.reverse.to_a
-    c.reverse == c.to_l.reverse.to_a
-    d.reverse == d.to_l.reverse.to_a
+    puts a.reverse == a.to_l.reverse.to_a
+    puts b.reverse == b.to_l.reverse.to_a
+    puts c.reverse == c.to_l.reverse.to_a
+    puts d.reverse == d.to_l.reverse.to_a
   end
 
   test_to_l_and_to_a(a,b,c,d)
