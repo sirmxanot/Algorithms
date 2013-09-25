@@ -1,1 +1,1 @@
-This is a library of various data structures and algorithms that I have coded while learning ruby. 
+This is a library of various data structures and algorithms that I wrote while learning ruby. 
