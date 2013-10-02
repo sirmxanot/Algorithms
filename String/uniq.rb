@@ -1,6 +1,6 @@
 #Remove the duplicate characters in a string
 class String
-  def dedupe
+  def uniq
     chars = Hash.new
 
     self.each_char do |char|
@@ -13,12 +13,12 @@ end
 
 def test
   # test non-destructive dedupe
-  puts "aabbcc".dedupe == "abc"
-  puts "112233".dedupe == "123"
-  puts "abacabac".dedupe == "abc"
-  puts " $ a A 111 ".dedupe == " $aA1"
-  puts "".dedupe == ""
-  puts "abc".dedupe == "abc"
+  puts "aabbcc".uniq == "abc"
+  puts "112233".uniq == "123"
+  puts "abacabac".uniq == "abc"
+  puts " $ a A 111 ".uniq == " $aA1"
+  puts "".uniq == ""
+  puts "abc".uniq == "abc"
 end
 
 test
