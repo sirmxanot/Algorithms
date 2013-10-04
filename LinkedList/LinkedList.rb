@@ -1,3 +1,5 @@
+# Classic linked list implementation with basic class methods
+
 class Element
   attr_accessor :next, :value
 
@@ -107,7 +109,7 @@ end
 # basic unit tests
 def test
   a = [1,2,3,4,5,6]
-  b = [a,b,1,2,-3,54.5]
+  b = ["a","b",1,2,-3,54.5]
   c = [0,1,2,2,1,0]
   d = []
 
