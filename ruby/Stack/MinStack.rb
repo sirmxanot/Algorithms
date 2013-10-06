@@ -1,3 +1,4 @@
+# NOT COMPLETE!
 # Basic stack implemented with ruby array plus min method
 
 class Stack
