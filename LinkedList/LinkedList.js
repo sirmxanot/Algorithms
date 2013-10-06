@@ -58,7 +58,7 @@ LinkedList.prototype.shift = function() {
 LinkedList.prototype.pop = function() {
   if (this.head === null) return null;
   element = this.tail;
-  this.tail = this.find_by_next(element);
+  this.tail = this.findByNext(element);
   if (this.tail != null) this.tail.next = null;
   return element;
 }
@@ -120,9 +120,9 @@ function TestData() {
   this.d = new LinkedList([]);
 }
 
-TestData.prototype.each = function() {
+// TestData.prototype.each = function() {
 
-}
+// }
 
 TestData.prototype.testDisplay = function() {
   console.log("Display Tests")
@@ -159,12 +159,40 @@ TestData.prototype.testShift = function() {
   console.log(this.d.shift() === null);
 }
 
-TestData.prototype.findByNext = function() {
+TestData.prototype.testfindByNext = function() {
+  console.log("findByNext Tests")
+  var element = this.a.head
+  while (element !== null) {
+    console.log(this.a.findByNext(element.next) === element);
+    element = element.next;
+  }
 
+  var element = this.b.head
+  while (element !== null) {
+    console.log(this.b.findByNext(element.next) === element);
+    element = element.next;
+  }
+
+  var element = this.c.head
+  while (element !== null) {
+    console.log(this.c.findByNext(element.next) === element);
+    element = element.next;
+  }
+
+  var element = this.d.head
+  while (element !== null) {
+    console.log(this.d.findByNext(element.next) === element);
+    element = element.next;
+  }
 }
 
-TestData.prototype.pop = function() {
-
+TestData.prototype.testPop = function() {
+  console.log("Pop Tests")
+  console.log(this.a.pop().value === 6);
+  console.log(this.b.pop().value === 54.5);
+  console.log(this.b.pop().value === -3);
+  console.log(this.c.pop().value === 0);
+  console.log(this.d.pop() === null);
 }
 
 //new TestData().testEach();
@@ -172,6 +200,5 @@ new TestData().testDisplay();
 new TestData().testUnshift();
 new TestData().testPush();
 new TestData().testShift();
-//new TestData().testfindByNext();
-//new TestData().testPop();
-//http://en.wikipedia.org/wiki/Immediately-invoked_function_expression
+new TestData().testfindByNext();
+new TestData().testPop();
