@@ -76,15 +76,15 @@ LinkedList.prototype.findByNext = function(element) {
 }
 
 // Returns each element of a linked list sequentially
-// LinkedList.prototype.each = function*() {
-//   if (this.head === null) return null;
-//   var element = this.head;
+LinkedList.prototype.map = function(callBack) {
+  if (this.head === null) return null;
+  var element = this.head;
 
-//   while (element !== null) {
-//     yield element;
-//     element = element.next;
-//   }
-// }
+  while (element !== null) {
+    callBack(element.value);
+    element = element.next;
+  }
+}
 
 // Displays the contents of a LinkedList as an array
 LinkedList.prototype.display = function() {
@@ -120,13 +120,13 @@ function TestData() {
   this.d = new LinkedList([]);
 }
 
-// TestData.prototype.each = function() {
-
-// }
+TestData.prototype.testMap = function() {
+  console.log("Map Tests");
+  this.a.map(function(item) {console.log(item) });
+}
 
 TestData.prototype.testDisplay = function() {
-  console.log("Display Tests")
-  console.log(this.a.display())
+  console.log("Display Tests");
   console.log(arraysEqual(this.a.display(),[1,2,3,4,5,6]));
   console.log(arraysEqual(this.b.display(),["a",1,2,-3,54.5]));
   console.log(arraysEqual(this.c.display(),[0,1,2,2,1,0]));
@@ -195,7 +195,7 @@ TestData.prototype.testPop = function() {
   console.log(this.d.pop() === null);
 }
 
-//new TestData().testEach();
+new TestData().testMap();
 new TestData().testDisplay();
 new TestData().testUnshift();
 new TestData().testPush();
