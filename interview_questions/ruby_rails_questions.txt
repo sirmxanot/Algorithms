@@ -1,0 +1,50 @@
+1. What is MVC Framework and provide at least two examples of MVC Frameworks?
+  An MVC Framework is an implementation of the Model View Controller design pattern. The MVC pattern separates the visual representation of information (View) from the methods which work on the underlying data (Model). The Controller takes external requests (from a user or an api) and instructs the model or the view what to do based on the request. Rails is the most famous example of an MVC framework in Ruby. Django is an MVC framework in Python. There are a lot of MVC frameworks in JavaScript such as Ember.js and Angular.js. There are also many similar design patterns such as MV* (like backbone.js which uses model view presenter instead of a controller). 
+
+2. What is name of the module in Rails which acts as ORM?
+  ORM stands for Object-Relational-Mapping. The Rails module which acts as the ORM is called ActiveRecord. ActiveRecord translates between ruby objects and the database. ActiveRecord is based on the Active Record design pattern where each table is wrapped in a class and each row of the table is represented by an instance of that class. AR provides methods that allow interaction with the data in a database indirectly through manipulation of the Ruby objects which represent that data. This provides a layer of abstraction between the logic of data manipulation and the actual manipulation on a database. 
+
+3.  How can you list all routes for an application in Rails?   
+  This can be accomplished by navigating into the directory of your rails application on the CLI and executing the rake routes (depending on your environment, you might need to use bundle exec rake routes). ex:
+  $ cd Projects/MyRailsApp
+  $ bundle exec rake routes
+
+3.a. List all routes for a specific controller?
+  Follow the same steps as in 3) but add the CONTROLLER= option to rake routes. ex:
+  $ cd Projects/MyRailsApp
+  $ bundle exec rake routes CONTROLLER=controller_name
+
+4. What is an observer? 
+  Observer is a design pattern where a Subject object maintains a list of dependent observers and then notifies them of state changes. Observer is commonly used in conjunction with the MVC pattern. In this scenario the Model is the Subject and the Views are the dependent observers.
+
+4.a. How to implement Observers in Rails?  
+  Rails has implemented the Observer pattern in several places internally, especially with Views observing Models. Additionally, new observer classes can be made by creating a new class and having it inherit from ActiveRecord::Observer. Ex: class MyObserver < ActiveRecord::Observer. Within this class, the ActiveRecord::Callbacks (ie. before_save, after_update, before_validation, etc) methods can be implemented. In order to activate the observer, it needs to be listed within the config.active_record.observers setting within config/application.rb
+
+4.b.  Can you implement rails observer for multiple models?
+  Yes. There is an Observer class method called observe. You can pass observe multiple models in the form of symbols. ex: observe :user, :account. Otherwise the observer will be mapped to the class which has the same name as the first part of the Observer class name. ex: UserObserver would get mapped to User by default 
+
+5. What is the testing framework you used with last rails application?  How do you simulate test data in Rails?
+  RSpec was the testing framework that I used in my last rails application. I used FactoryGirl Factories to build my test_data.
+
+6. What are ruby gems?
+  Gems are how the ruby community packages libraries. I usually find gems on RubyGems.org. You can install a gem with the following CLI command: gem install GemName. You can also add a gem to your project's gemfile if it has one. The format looks like this: gem "GemName", "~> 1.2.3" where the last argument specifies a version number so that the version of your gems stays the same regardless of the system or when the project is updated.
+
+7. What's the difference between a sybmol and a string in ruby?
+  Symbols are immutable, are instantiated faster than strings, some methods are faster on symbols than on strings. If you define the same symbol multiple times, ruby will use the same object every time. If you do the same thing with a string, it will create a new object every time. Symbols allocate memory and never de-allocate it. Symbols are meant to be used as identifiers.
+
+8. What are global, class and instance variables? How are they different. 
+  Class variables are declared with a double at @@. Instance variables are declared with a single at @. Global variables are declared with a $. Class variables are available to all class methods, sub-classes, and instances of a class. Instance variables are only available to a specific instance of a class. Global variables can be declared anywhere and used anywhere within a program. Global variables should be avoided whever possible.
+
+9. Does ruby support constructors?
+  Yes. Ruby supports constructors. They're declared within a class by defining the initialize method. They're accessed via the .new method.
+
+10. What are ruby accessors?
+  Accessors are methods which can be included within a class to allow various levels of access to instance variables. They're sometimes called getters and setters. There's attr_reader which gives read access, attr_writer which adds update access, and attr_accessor which adds both. They are equivalent to boilerplate reader methods which return the value or update the value of an instance variable. 
+
+11. What is the difference between ‘&&’, ‘and’ and ‘&’ operators?
+  The difference is the level of precedence. && acts the same as in c-like languages. and is only used in special cases. I generally avoid and and use && with parens when necessary for the sake of clarity.
+
+12. What does ! at the end of a methodname mean?
+  This is a convention that is not strictly follwed. However, it generally means that the method is destructive. It will return the same object it was passed after modifying it. The same method without the bang would return a different object from the one that was passed to it.
+
+13. 

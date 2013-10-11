@@ -1,0 +1,17 @@
+1. What is a directed acyclic graph (DAG)?
+  It's a directed graph with no directed cycles. Directed means it is composed of nodes with directed edges. Every edge goes only in one direction between the two  nodes it connects. Acyclic means that for any given starting node n, there's no combination of edges which can be followed to return to n. This type of graph can be used to represent tasks with dependencies. 
+
+2. What is a tree?
+  Trees are undirected graphs where any two nodes are connected by exactly one path. Any connected graph without simple cycles is a tree. 
+
+3. What is depth-first search (DFS)?
+  DFS is an algorithm for traversing (or searching) a graph. The algorithm starts at a root node and then explores as far as possible along each branch before backtracking. 
+
+4. What is breadth-first search (BDS)?
+  BFS is an algorithm for traversing (or searching) a graph. The algorithms starts at a root node and then explores all the immediately neighboring nodes. Then for each of those neighbor nodes, it inspects their (unvisited) neighbor nodes until the whole graph is explored. Used for finding all nodes within a connected component and for finding the shortest path (number of edges) between two nodes.  
+
+5. What is the binary search algorithm?
+  A binary search algorithm takes a sorted list or array as input and then looks at the middle element, compares it to the element being searched for. If the middle element is larger than the target element, the algorithm will choose the element with an index half-way between the first element and the middle element. If the middle element is smaller than the target element then the algorithm will choose the element with an index half-way between the middle element and the last element as the next search location. This continues until the target element is either found, or the entire array has been searched. 
+
+6. What is a binary search tree (ordered/sorted binary tree)?
+  A binary search tree is a datastructure which has the following qualities: - The left subtree of a node contains only nodes with keys less than the node's key. - The right subtree of a node contains only nodes with keys greater than the node's key. - The left and right subtree must each also be a binary search tree. - There must be no duplicate nodes. 
