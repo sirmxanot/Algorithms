@@ -1,18 +1,24 @@
 // This is an implementation of an immutable linked list (cons list)
-trait LinkedList[T] {
+trait LinkedList[+T] {
   def isEmpty: Boolean
   def head: T
   def tail: LinkedList[T]
+  def prepend [U >: T] (elem: U): List[U] = new Cons(elem, this)
 }
 
 class Cons[T](val head: T, val tail: LinkedList[T]) extends LinkedList[T] {
   def isEmpty = false
 }
 
-class Nil[T] extends LinkedList[T] {
+object Nil extends LinkedList[Nothing] {
   def isEmpty: Boolean = true
   def head: Nothing = throw NoSuchElementException("Nil.head")
   def tail: Nothing = throw NoSuchElementException("Nil.tail")
+}
+
+object test {
+  val x: List[String] = Nil
+
 }
 
 def singleton[T](element: T) = new Cons[T](element, new Nil[T])
