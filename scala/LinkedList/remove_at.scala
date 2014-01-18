@@ -1,0 +1,1 @@
+def remove_at(n: INT, xs: List[Int]) = (xs take n) ::: (xs drop n + 1)
