@@ -1,0 +1,42 @@
+1. What is the difference between an inner and outer join? Expalin with examples.
+  An inner join of A and B gives the result of A intersect B. That is, the rows which are present in A AND B. The inner section of a venn diagram. An outer join of A and B gives the results of A union B. That is, all rows present in A and all rows present in B. The full venn diagram including the outer parts. Various types of outer joins will result in different behavior. 
+  http://www.codeproject.com/Articles/33052/Visual-Representation-of-SQL-Joins
+
+2. What is the difference between JOIN and UNION?
+  UNION combines the results of two or more queries into a single result set that includes all the rows that belong to all the queries in the union. JOINs allow you to retrieve data from two or more tables based on the logical relationships between the tables. The output from a UNION will be one column with the data from both tables. The output from a JOIN will have the data from each column shown individually.
+
+3. What is the difference between UNION and UNION ALL?
+  Both UNION and UNION ALL concatenate the result of two different SQL queries. They differ in the way they handle duplicates. UNION performs a DISTINCT on the result set, eliminating any duplicate rows. UNION ALL does not remove duplicates, and it is therefore faster than UNION.
+
+4. What is the difference between a WHERE clause and a HAVING clause?
+  WHERE and HAVING both filter out records based on one or more conditions. The difference is, a WHERE clause can only be applied on a static non-aggregated column whereas HAVING can be applied to aggregated columns. WHERE is used before aggregation takes place. HAVING is used after aggregation takes place. 
+
+5. What is the difference between UNION, MINUS, and INTERSECT?
+  UNION combines the results from two or more tables and eliminates duplicate records from the result set. MINUS returns the rows from the first table except the rows which are present in the second table (the left outer part of a venn diagram). INTERSECT returns the common rows between two result sets.
+
+6. What is SELF JOIN and why is it required?
+  Self JOINs JOIN a table to itself. This is useful to convert hierarchical structure into a flat structure. 
+
+8. How do you select the first 5 records from a table?
+  SELECT * FROM TableName LIMIT 5;
+
+9. What type of wildcards have you used?
+  A wildcard character can be used to substitute for any other character(s) in a string. Wildcard characters are used with the LIKE operator. Examples are % substitution for zero or more characters, _ substitution for a single character, [charlist] sets and ranges of characters to match, [^charlist] or [!charlist] match only a character NOT specified within the brackets.
+
+10. What is SQL?
+  Sructured Query Language. It's a standard language for creating, accessing, inserting, updating, and deleting records in a database. 
+
+11. What are the subsets of SQL?
+  Data Manipulation Language, Data Definition Language, and Data Control Language
+
+12. What is Data Manipulation Language?
+  DML is a language which enables users to access and manipulate data. It is used to perform the following operations: insertion of data into the database, retrieval of data from the database, updating data in the database, deletion of data in the database.
+
+13. What is Data Definition Language?
+  DDL enables users to create, alter, and delete database objects such as schemas, tables, views, sequences, catalogs, indexes, and aliases. 
+
+14. What is Data Control Language?
+  DCL enables users to control access to the database. Inlcudes commands like GRANT and REVOKE.
+
+15. How do you fetch data from a database table?
+  You select data from a table using a SELECT statement. Ex. SELECT * FROM table_name;

@@ -15,7 +15,6 @@ class Stack
   end
 
   def pop
-    
     @contents.pop
   end
 
