@@ -1,0 +1,21 @@
+Object Orientation
+1. What does Ruby see as objects?
+  Ruby is a pure object-oriented language and everything appeart to Ruby as an object. Every value in Ruby is an object, even the most primitive things: strings, numbers and even true and false. Even a class itself is an object that is an instance of the Class class.
+
+2. What is a class used for in Ruby?
+  A class is used to specify the form of an object. It combines data representation and methods for manipulating the data into one neat package. The data and methods within a class are called members of the class.
+
+3. How do you define a "blueprint" for a data type in Ruby?
+  When you define a class, you define a blueprint for a data type. This doesn't actually define any data, but it does define what the class name means, that is, what an object of the class will consist of and what operations can be performed on such an object.
+
+4. How do you define a class in Ruby?
+  A class definition starts with the keyword class followed by the class name and is deliminted with an end. Ex: 
+  class Human
+    some code here
+  end
+  The name must begin with a capital letter and by convention names that contain more than one word are run together with each word capitalized and no separating characters. Ex: CamelCase
+
+5. How do you create objects in Ruby?
+  A class provides the blueprints for objects, so basically an object is created form a class. We declare objects of a class using the new keyword. Ex: human1 = Human.new
+
+6. 
