@@ -18,4 +18,60 @@ Object Orientation
 5. How do you create objects in Ruby?
   A class provides the blueprints for objects, so basically an object is created form a class. We declare objects of a class using the new keyword. Ex: human1 = Human.new
 
-6. 
+6. Does ruby have a constructor method?
+  The initialize method is a standard Ruby class method that works almost the same way as constructor works in other object oriented programming languages. The initialize method is useful when you want to initialize some class variables at the time of object creation. Ex.
+  class Human
+    def initialize(age, height)
+      @age = age
+      @height = height
+    end
+  end
+
+7. How are instance variables used in Ruby?
+  Instance variables in Ruby represent attributes of the class. They become properterties of objects created from the class. Every object's attributes are assigned individually and share no value with other objects. They are accessed using the @ operator whithin the class but to access them outside of the class we use public methods which are called accessor methods. Ex. In the above example from 6, @age and @height are instance variables.
+
+8. How do you make variables available from outside their class?
+  To make variables avaialable from outside the class, they must be defined within accessor methods, these accessor methods are also known as setter and getter methods. Ex.
+  class Human
+    #setter
+    def setAge=(value)
+      @age = value
+    end
+
+    #getter
+    def getAge
+      @age
+    end
+  end
+
+9. What are class variables and how do you define them?
+  Class variables are variables which are shared between all instances of a class. In other words, there is one instance of the variable and it is accessed by object instances. Class variables are prefixed with @@. A class variable must be initialized within the class definition.
+
+10. How do you define a class method in Ruby?
+  A class method is defined using def self.MethodName() which ends with the end delimiter. Class methods can be called using the class name: ClassName.MethodName. 
+
+11. How does Ruby implement Access Control?
+  Ruby provides three levels of protection to instance methods which may be public, private, or protected. Ruby does not apply any access control over instance and class variables:
+    - Publice Methods: Public methods can be called by anyone. Methods are public by default except for initialize, which is always private. 
+    - Private Methods: Private methods cannot be accessed, or even viewed from outsite the class. Only the class methods can access private methods. 
+    - Protected Methods: A protected method can be invoked only by objects of the defining class and its sublasses.
+
+12. Does Ruby have multiple inheritance?
+  Ruby does not support multiple levels of inheritance, but it does support mixins. A mixin is like a specialized implementation of multiple inheritance in which only the interface portion is inherited. 
+
+13. But it still has subclasses, right?
+  Yes. When creating a class, instead of writing completely new data members and member functions, you can designate that the new class should inherit the members of an existing class. This existing class is called the base class or superclass, and the new class is referred ot as the derived class or sub-class. 
+
+14. How do you make a subclass of a ruby class?
+  The syntax for extending a class is simple. Just add a < character and the name of the superclass to your class statement. Ex.
+  class Human
+    ... general Human methods
+  end
+  class TallHuman < Human
+    ... TallHuman specific methods
+  end
+
+15. Do subclasses have the ability to override their superclass's methods?
+  Yes. You can change the behavior of a method that is already defined in the parent class. Just keep the method name the same and define the new functionality. 
+
+  
