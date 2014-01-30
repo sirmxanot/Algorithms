@@ -2,16 +2,14 @@
 class MergeSort
   attr_reader :sorted_array
 
-  def inititialize(array)
+  def initialize(array)
     @original_array = array
     @length = @original_array.length
-    @sorted_array = sort_original_array
-
-    return @sorted_array
+    @sorted_array = []
   end
 
-  def sort_original_array
-    if @original_array.is_base_case
+  def sort
+    if original_array_is_base_case
       return @original_array
     else
       split_original_array.recurse_on_both_halves.merge_and_return_the_results
@@ -27,8 +25,8 @@ class MergeSort
   end
 
   def recurse_on_both_halves
-    @left  = MergeSort.new(left_half)
-    @right = MergeSort.new(right_half)
+    @left  = MergeSort.new(@left_half).sort
+    @right = MergeSort.new(@right_half).sort
 
     return self
   end
@@ -42,7 +40,7 @@ class MergeSort
   end
 
   def next_biggest_element
-    if @left.sorted_array[0] is_greater_than @right.sorted_array[0]
+    if @left.sorted_array[0].is_greater_than @right.sorted_array[0]
       @left.sorted_array.pop
     else
       @right.sorted_array.pop
@@ -59,7 +57,13 @@ class MergeSort
     end
   end
 
-  def is_base_case
+  def original_array_is_base_case
     @length < 2
+  end
+end
+
+class Array
+  def is_base_case
+    self.length < 2
   end
 end
