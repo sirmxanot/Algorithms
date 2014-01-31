@@ -1,4 +1,7 @@
-# This is an OOP implementation of merge sort. It is not meant to be my most efficient implmentation. It is meant to help me practice object oriented design
+# This is an OOP implementation of merge sort. 
+# It is not meant to be my most efficient implmentation. 
+# It is meant to help me practice ood and functional decomposition
+# I found it more elegant to return a sorted array biggest -> smallest
 class MergeSort
   attr_reader :sorted_array
 
@@ -17,7 +20,9 @@ class MergeSort
   end
 
   def split_original_array
-    split_arrays = @original_array.each_slice(2).to_a
+    length_of_largest_half = (@length/2.0).ceil
+    split_arrays = @original_array.each_slice(length_of_largest_half).to_a
+    
     @left_half = split_arrays[0]
     @right_half = split_arrays[1]
 
@@ -32,7 +37,7 @@ class MergeSort
   end
 
   def merge_and_return_the_results
-    until @left.sorted_array.empty? and @right.sorted_array.empty?
+    until @left.empty? and @right.empty?
       @sorted_array.push next_biggest_element
     end
 
@@ -40,30 +45,24 @@ class MergeSort
   end
 
   def next_biggest_element
-    if @left.sorted_array[0].is_greater_than @right.sorted_array[0]
-      @left.sorted_array.pop
+    if next_left_is_greater_than_next_right
+      @left.shift
     else
-      @right.sorted_array.pop
+      @right.shift
     end
   end
 
-  def is_greater_than(element)
-    if self.nil?
+  def next_left_is_greater_than_next_right
+    if @left[0].nil?
       false
-    elsif element.nil?
+    elsif @right[0].nil?
       true
     else
-      self > element
+      @left[0] > @right[0]
     end
   end
 
   def original_array_is_base_case
     @length < 2
-  end
-end
-
-class Array
-  def is_base_case
-    self.length < 2
   end
 end
