@@ -55,5 +55,5 @@ def time
   end
 
   puts "Completed in #{Time.now - start} seconds."
-  result
+  result == 17
 end
