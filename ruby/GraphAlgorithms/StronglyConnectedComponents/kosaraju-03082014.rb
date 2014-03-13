@@ -47,19 +47,27 @@ class Kosaraju
     @reverse_natural_ordering = @graph_rev.keys.reverse
   end
 
-  # def determine_ordering_of node
-  #   @leaders_rev.insert @source, node
+  def determine_ordering_of node
+    @ordering[node]
 
-  #   @ordering[node] = 0
 
-  #   if self.has_key? node
-  #     self[node].each do |edge|
-  #       @graph_rev.determine_ordering_of edge unless @ordering.has_key? edge
-  #     end
-  #   end
 
-  #   @ordering[node] = @order += 1
-  # end
+    # @leaders_rev.insert @source, node
+
+    # @ordering[node] = 0
+
+    # if self.has_key? node
+    #   self[node].each do |edge|
+    #     @graph_rev.determine_ordering_of edge unless @ordering.has_key? edge
+    #   end
+    # end
+
+    # @ordering[node] = @order += 1
+  end
+
+  def explored? node
+    @ordering.has_key? node ? true : false
+  end
 end
 
 class Hash
