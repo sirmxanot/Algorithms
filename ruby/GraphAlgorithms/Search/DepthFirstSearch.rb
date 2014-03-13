@@ -1,5 +1,5 @@
 class DepthFirstSearch
-  attr_accessor :order
+  attr_accessor :explored
 
   def initialize(file)
     @file               = file
@@ -11,31 +11,36 @@ class DepthFirstSearch
   end
 
   def search
-    explore_top_node.recurse_until_no_more_nodes_unexplored
+    until @nodes_to_explore.empty?
+      explore_top_node
+    end
+
+    return @explored
+  end
+
+  def explore_top_node
+    mark_top_node_explored.find_unexplored_neighbor
+
+    if @next_neighbor.nil?
+      @nodes_to_explore.pop
+    else
+      @nodes_to_explore.push @next_neighbor
+    end
   end
   
-  def find_unexplored_neighbor
-    unvisited = @graph[@nodes_to_explore.last].detect { |neighbor| unexplored? neighbor } 
-
-    if unvisited
-
-    else
-
-
-    end
+  def mark_top_node_explored
+    top_node = @nodes_to_explore.last
     
+    unless @explored.has_key? top_node
+      @explored[top_node] = @order
+      @order += 1
+    end
+
     return self
   end
 
-  def mark_explored node
-    @explored[node] = @order
-    @order += 1
-  end
-
-  def find_next_unexplored_adjacent_node_to node
-    @graph[node].each do |adjacent_node|
-      return adjacent_node unless explored? adjacent_node
-    end
+  def find_unexplored_neighbor
+    @next_neighbor = @graph[@nodes_to_explore.last].detect { |neighbor| unexplored? neighbor } 
   end
 
   def unexplored? node
