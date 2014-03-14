@@ -1,7 +1,7 @@
 class MinHeap
   attr_accessor :heap
 
-  def initialize heap
+  def initialize(heap = Array.new)
     @heap = heap
   end
   
@@ -23,7 +23,6 @@ class MinHeap
     min = @heap.shift
     
     insert_last_leaf_as_root
-    
     bubble_down_key_at_index 0
 
     return min
@@ -40,16 +39,16 @@ class MinHeap
   private
 
   def bubble_up_key_at_index i
-    parent_index = (i / 2).floor
+    parent_index = ((i - 0.5) / 2).floor
 
-    unless parent_value_of(i).nil? || @heap[i] >= parent_value_of(i)
+    unless parent_value_of(i).nil? || @heap[i] >= parent_value_of(i) || parent_index < 0
       @heap.swap! i, parent_index
       bubble_up_key_at_index parent_index
     end
   end
 
   def parent_value_of i
-    @heap[(i / 2).floor]
+    @heap[((i - 0.5) / 2).floor]
   end
 
   def insert_last_leaf_as_root
@@ -67,17 +66,17 @@ class MinHeap
   end
 
   def min_child_of i
-    children = [@heap[2*i]]
-    children << @heap[2*i+1] if @heap[2*i+1]
+    children = [@heap[2*i+1]]
+    children << @heap[2*i+2] if @heap[2*i+2]
 
     return children.min
   end
 
   def min_child_index_of i
-    min_child_index = 2*i
+    min_child_index = 2*i+1
     
-    if @heap[2*i+1]
-      min_child_index = 2*i+1 if @heap[2*i+1] < @heap[2]
+    if @heap[2*i+2]
+      min_child_index = 2*i+2 if @heap[2*i+2] < @heap[2*i+1]
     end
 
     return min_child_index
@@ -93,11 +92,18 @@ class Array
 end
 
 def test
-  array = [4,4,8,9,4,12,9,11,13]
-  heap = MinHeap.new(array)
+  array_a = [4,4,8,9,4,12,9,11,13]
+  array_b = [4,4,8,9,4,12,9,11,13]
+  a = MinHeap.new(array_a)
+  b = MinHeap.new(array_b)
 
-  puts heap.find_min    == array.min
-  puts heap.extract_min == array.min
-  puts heap.insert(20)#   == [4,4,8,9,4,12,9,11,13,20]
-  #puts heap.insert(1)    == [1,4,8,9,4,12,9,11,13,20,4]
+  puts a.find_min    == array_a.min
+  puts a.extract_min == array_a.min
+  puts a.heap        == [4,4,8,9,13,12,9,11]
+
+  puts b.insert(20)  == [4,4,8,9,4,12,9,11,13,20]
+  puts b.insert(1)   == [1,4,8,9,4,12,9,11,13,20,4]
+  puts b.insert(5)   == [1,4,5,9,4,8,9,11,13,20,4,12]
+  puts b.extract_min == 1
+  puts b.heap        == [4,4,5,9,4,8,9,11,13,20,12]
 end
