@@ -1,8 +1,9 @@
 # shuffle an array in place
-# shuffle is built into ruby. array.shuffle
+# a good candidate should mention that array.shuffle is built into ruby
+# and then write their own custom method
 
 class Array
-  def my_shuffle
+  def my_shuffle!
     index_start = 0
     index_end   = self.size - 1
 
@@ -23,6 +24,6 @@ def test
   a = [1,2,3,4,5]
   b = ["a","n","d","r","e","w"]
 
-  puts a.my_shuffle
-  puts b.my_shuffle
+  puts a.my_shuffle!
+  puts b.my_shuffle!
 end
