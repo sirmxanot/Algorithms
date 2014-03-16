@@ -10,7 +10,7 @@ class Element
 end
 
 class LinkedList
-  attr_accessor :name
+  attr_accessor :head, :tail
 
   def initialize
     @head = nil
@@ -182,5 +182,3 @@ def test
   test_pop(a,b,c,d)
   test_find_by_next(a,b,c,d)
 end
-
-test

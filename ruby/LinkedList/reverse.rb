@@ -11,6 +11,16 @@ class LinkedList
 
     new_list
   end
+
+  def reverse_2
+    new_list = LinkedList.new
+
+    until self.tail.nil?
+      new_list.push self.pop
+    end
+
+    new_list
+  end
 end
 
 def test
@@ -23,6 +33,11 @@ def test
   puts b.reverse == b.to_l.reverse.to_a
   puts c.reverse == c.to_l.reverse.to_a
   puts d.reverse == d.to_l.reverse.to_a
+
+  puts a.reverse == a.to_l.reverse_2.to_a
+  puts b.reverse == b.to_l.reverse_2.to_a
+  puts c.reverse == c.to_l.reverse_2.to_a
+  puts d.reverse == d.to_l.reverse_2.to_a
 end
 
 test
