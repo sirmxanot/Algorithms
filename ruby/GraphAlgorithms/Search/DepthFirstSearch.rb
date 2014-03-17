@@ -57,3 +57,13 @@ class DepthFirstSearch
     end
   end
 end
+
+class Hash
+  def insert key, value
+    if self.has_key? key
+      self[key] << value
+    else
+      self[key] = [value]
+    end
+  end
+end
