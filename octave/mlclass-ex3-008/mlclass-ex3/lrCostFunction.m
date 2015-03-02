@@ -37,7 +37,16 @@ grad = zeros(size(theta));
 %
 
 
-
+h = sigmoid(X*theta);
+term_1 = -y .* log(h);
+term_2 = -(1 - y) .* log(1 - h);
+theta_j = theta(2:end);
+term_reg = (lambda/(2*m))*sum(theta_j.^2);
+J = (1/m)*sum(term_1 + term_2) + term_reg;
+grad_reg = (lambda/m) * theta_j;
+grad_reg_padded = [0 ; grad_reg];
+grad_old = (1/m)*(X' * (h -y));
+grad = grad_old  + grad_reg_padded;
 
 
 
