@@ -1,4 +1,4 @@
-class Hash():
+class Hash:
     def __init__(self, n=1001):
         self.storage = [[] for _ in range(n)]
         self.n = n

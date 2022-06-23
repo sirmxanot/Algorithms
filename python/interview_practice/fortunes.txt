@@ -1,0 +1,11 @@
+This is a fortune
+%
+This is 
+Another fortune
+%
+What does the fox say?
+%
+the
+cow%
+says%
+Moo
